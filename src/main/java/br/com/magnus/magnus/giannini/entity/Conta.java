@@ -17,5 +17,8 @@ public class Conta {
     private String senha;
     @ManyToOne
     @JoinColumn(nullable = false)
-    private TipoConta cod_tip_conta;
+    private TipoConta tipo_conta;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Usuario usuario;
 }

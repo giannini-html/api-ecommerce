@@ -18,9 +18,7 @@ public class UsuarioFacade {
     private UsuarioRepository usuarioRepository;
 
     public Usuario criar(Usuario usuario) {
-        Long proximoId = (long) (clientes.keySet().size() + 1);
-        usuario.setCod_cliente(proximoId);
-        clientes.put(proximoId, usuario);
+        usuarioRepository.save(usuario);
         return usuario;
     }
 

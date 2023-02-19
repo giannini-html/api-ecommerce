@@ -4,9 +4,11 @@ import br.com.magnus.magnus.giannini.entity.Conta;
 import br.com.magnus.magnus.giannini.facade.ContaFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/conta", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -16,7 +18,7 @@ public class ContaController {
     private ContaFacade contaFacade;
 
     @PostMapping
-    public Conta criar(@RequestBody Conta conta) {
+    public ResponseEntity<String> criar(@RequestBody Conta conta) {
         return contaFacade.criar(conta);
     }
 
@@ -31,12 +33,12 @@ public class ContaController {
     }
 
     @GetMapping("/{contaId}")
-    public Conta obterPorId(@PathVariable Long contaId) {
+    public Optional<Conta> obterPorId(@PathVariable Long contaId) {
         return contaFacade.recuperarPorId(contaId);
     }
 
-    @DeleteMapping("/{contaId}")
-    public String atualizar(@PathVariable Long contaId) {
-        return contaFacade.delete(contaId);
+    @DeleteMapping
+    public ResponseEntity<String> atualizar(@RequestBody Conta conta) {
+        return contaFacade.delete(conta);
     }
 }

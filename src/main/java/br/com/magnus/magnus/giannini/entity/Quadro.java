@@ -21,6 +21,5 @@ public class Quadro {
     private Long altura;
     private Long largura;
     private Long preco;
-    private Long carrinho_id;
 
 }

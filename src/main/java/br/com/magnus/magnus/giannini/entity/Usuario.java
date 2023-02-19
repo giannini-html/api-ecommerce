@@ -16,8 +16,9 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cod_cliente;
+    private Long cod_usuario;
     private String nome;
+    private String sobrenome;
     private String email;
     private String cpf;
 

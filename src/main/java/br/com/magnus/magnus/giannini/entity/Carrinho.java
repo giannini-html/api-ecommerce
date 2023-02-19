@@ -9,7 +9,6 @@ import java.util.List;
 
 @Data
 @Entity(name = "CARRINHO")
-@Table(name = "CARRINHO")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Carrinho {
@@ -20,7 +19,5 @@ public class Carrinho {
     private Long preco;
     @ManyToOne
     private Usuario cli_cod;
-    @OneToMany
-    private List<Quadro> quadros;
 
 }
