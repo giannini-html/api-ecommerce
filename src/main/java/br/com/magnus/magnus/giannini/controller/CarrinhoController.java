@@ -20,9 +20,9 @@ public class CarrinhoController {
         return carrinhoFacade.criar(carrinho);
     }
 
-    @PutMapping("/{carrinhoId}")
-    public Carrinho atualizar(@PathVariable Long carrinhoId, @RequestBody Carrinho carrinho) {
-        return carrinhoFacade.atualizar(carrinho, carrinhoId);
+    @PutMapping
+    public Carrinho atualizar(@RequestBody Carrinho carrinho) {
+        return carrinhoFacade.atualizar(carrinho);
     }
 
     @GetMapping

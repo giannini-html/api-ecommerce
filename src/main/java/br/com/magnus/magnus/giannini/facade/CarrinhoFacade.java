@@ -1,5 +1,6 @@
 package br.com.magnus.magnus.giannini.facade;
 
+import br.com.magnus.magnus.giannini.dao.CarrinhoRepository;
 import br.com.magnus.magnus.giannini.entity.Carrinho;
 import org.springframework.stereotype.Service;
 
@@ -12,28 +13,26 @@ import java.util.Map;
 public class CarrinhoFacade {
     private static final Map<Long, Carrinho> carrinho = new HashMap<>();
 
+    private CarrinhoRepository carrinhoRepository;
+
     public Carrinho criar(Carrinho carrinho) {
-        Long proximoId = (long) (CarrinhoFacade.carrinho.keySet().size() + 1);
-        carrinho.setCod_carrinho(proximoId);
-        CarrinhoFacade.carrinho.put(proximoId, carrinho);
-        return carrinho;
+        return carrinhoRepository.save(carrinho);
     }
 
-    public Carrinho atualizar(Carrinho carrinho, Long carrinhoId) {
-        CarrinhoFacade.carrinho.put(carrinhoId, carrinho);
-        return carrinho;
+    public Carrinho atualizar(Carrinho carrinho) {
+        return carrinhoRepository.save(carrinho);
     }
 
     public Carrinho recuperarPorId(Long carrinhoId) {
-        return carrinho.get(carrinhoId);
+        return carrinhoRepository.getById(carrinhoId);
     }
 
     public List<Carrinho> getAll() {
-        return new ArrayList<>(carrinho.values());
+        return new ArrayList<>(carrinhoRepository.findAll());
     }
 
     public String delete(Long carrinhoId) {
-        carrinho.remove(carrinhoId);
+        carrinhoRepository.deleteById(carrinhoId);
         return "DELETADO";
     }
 }

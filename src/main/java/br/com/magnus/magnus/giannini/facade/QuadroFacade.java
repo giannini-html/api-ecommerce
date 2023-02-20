@@ -5,10 +5,7 @@ import br.com.magnus.magnus.giannini.entity.Quadro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class QuadroFacade {
@@ -23,13 +20,12 @@ public class QuadroFacade {
         return quadro;
     }
 
-    public Quadro atualizar(Quadro quadro, Long quadroId) {
-        quadros.put(quadroId, quadro);
-        return quadro;
+    public Quadro atualizar(Quadro quadro) {
+        return quadroRepository.saveAndFlush(quadro);
     }
 
-    public Quadro recuperarPorId(Long quadroId) {
-        return quadros.get(quadroId);
+    public Optional<Quadro> recuperarPorId(Long quadroId) {
+        return quadroRepository.findById(quadroId);
     }
 
     public List<Quadro> getAll() {
@@ -37,7 +33,7 @@ public class QuadroFacade {
     }
 
     public String delete(Long quadroId) {
-        quadros.remove(quadroId);
+        quadroRepository.deleteById(quadroId);
         return "DELETADO";
     }
 }

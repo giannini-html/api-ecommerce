@@ -18,13 +18,13 @@ public class ContaController {
     private ContaFacade contaFacade;
 
     @PostMapping
-    public ResponseEntity<String> criar(@RequestBody Conta conta) {
+    public Conta criar(@RequestBody Conta conta) {
         return contaFacade.criar(conta);
     }
 
-    @PutMapping("/{contaId}")
-    public Conta atualizar(@PathVariable Long contaId, @RequestBody Conta conta) {
-        return contaFacade.atualizar(conta, contaId);
+    @PutMapping
+    public Conta atualizar(@RequestBody Conta conta) {
+        return contaFacade.atualizar(conta);
     }
 
     @GetMapping
@@ -37,8 +37,8 @@ public class ContaController {
         return contaFacade.recuperarPorId(contaId);
     }
 
-    @DeleteMapping
-    public ResponseEntity<String> atualizar(@RequestBody Conta conta) {
-        return contaFacade.delete(conta);
+    @DeleteMapping("/{contaId}")
+    public String deletar(@RequestBody Long contaId) {
+        return contaFacade.delete(contaId);
     }
 }

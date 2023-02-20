@@ -16,14 +16,12 @@ public class ContaFacade {
     @Autowired
     private ContaRepository contaRepository;
 
-    public ResponseEntity<String> criar(Conta conta) {
-        contaRepository.save(conta);
-        return new ResponseEntity<String>("Conta criado com sucesso", HttpStatus.OK);
+    public Conta criar(Conta conta) {
+        return contaRepository.save(conta);
     }
 
-    public Conta atualizar(Conta conta, Long contaId) {
-        contaRepository.save(conta);
-        return conta;
+    public Conta atualizar(Conta conta) {
+        return contaRepository.save(conta);
     }
 
     public Optional<Conta> recuperarPorId(Long contaId) {
@@ -35,8 +33,8 @@ public class ContaFacade {
         return lista;
     }
 
-    public ResponseEntity<String> delete(Conta conta) {
-        contaRepository.delete(conta);
-        return new ResponseEntity<String>("Conta deletada com sucesso", HttpStatus.OK);
+    public String delete(Long contaId) {
+        contaRepository.deleteById(contaId);
+        return "DELETADO";
     }
 }

@@ -18,8 +18,7 @@ public class UsuarioFacade {
     private UsuarioRepository usuarioRepository;
 
     public Usuario criar(Usuario usuario) {
-        usuarioRepository.save(usuario);
-        return usuario;
+        return usuarioRepository.save(usuario);
     }
 
     public Usuario atualizar(Usuario usuario, Long clienteId) {
