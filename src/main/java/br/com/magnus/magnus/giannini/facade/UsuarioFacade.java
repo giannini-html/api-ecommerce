@@ -5,14 +5,10 @@ import br.com.magnus.magnus.giannini.entity.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UsuarioFacade {
-    private static final Map<Long, Usuario> clientes = new HashMap<>();
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -21,13 +17,13 @@ public class UsuarioFacade {
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario atualizar(Usuario usuario, Long clienteId) {
-        clientes.put(clienteId, usuario);
+    public Usuario atualizar(Usuario usuario) {
+        usuarioRepository.save(usuario);
         return usuario;
     }
 
-    public Usuario recuperarPorId(Long clienteId) {
-        return clientes.get(clienteId);
+    public Optional<Usuario> recuperarPorId(Long clienteId) {
+        return usuarioRepository.findById(clienteId);
     }
 
     public List<Usuario> getAll() {
@@ -36,7 +32,7 @@ public class UsuarioFacade {
     }
 
     public String delete(Long clienteId) {
-        clientes.remove(clienteId);
+        usuarioRepository.deleteById(clienteId);
         return "DELETADO";
     }
 }

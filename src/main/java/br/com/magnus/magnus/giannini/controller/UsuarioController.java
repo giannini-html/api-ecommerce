@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/usuario", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -20,9 +21,9 @@ public class UsuarioController {
         return usuarioFacade.criar(usuario);
     }
 
-    @PutMapping("/{usuarioId}")
-    public Usuario atualizar(@PathVariable Long usuarioId, @RequestBody Usuario usuario) {
-        return usuarioFacade.atualizar(usuario, usuarioId);
+    @PutMapping
+    public Usuario atualizar(@RequestBody Usuario usuario) {
+        return usuarioFacade.atualizar(usuario);
     }
 
     @GetMapping
@@ -31,7 +32,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{usuarioId}")
-    public Usuario obterPorId(@PathVariable Long usuarioId) {
+    public Optional<Usuario> obterPorId(@PathVariable Long usuarioId) {
         return usuarioFacade.recuperarPorId(usuarioId);
     }
 

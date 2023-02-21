@@ -9,15 +9,11 @@ import java.util.*;
 
 @Service
 public class QuadroFacade {
-    private static final Map<Long, Quadro> quadros = new HashMap<>();
-
     @Autowired
     private QuadroRepository quadroRepository;
 
     public Quadro criar(Quadro quadro) {
-        quadroRepository.save(quadro);
-        quadroRepository.flush();
-        return quadro;
+        return quadroRepository.save(quadro);
     }
 
     public Quadro atualizar(Quadro quadro) {
@@ -29,7 +25,7 @@ public class QuadroFacade {
     }
 
     public List<Quadro> getAll() {
-        return new ArrayList<>(quadros.values());
+        return new ArrayList<>(quadroRepository.findAll());
     }
 
     public String delete(Long quadroId) {

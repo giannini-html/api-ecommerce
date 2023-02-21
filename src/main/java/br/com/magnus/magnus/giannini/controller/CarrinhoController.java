@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/carrinho", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -31,7 +32,7 @@ public class CarrinhoController {
     }
 
     @GetMapping("/{carrinhoId}")
-    public Carrinho obterPorId(@PathVariable Long carrinhoId) {
+    public Optional<Carrinho> obterPorId(@PathVariable Long carrinhoId) {
         return carrinhoFacade.recuperarPorId(carrinhoId);
     }
 

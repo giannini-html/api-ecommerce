@@ -20,5 +20,5 @@ public class Conta {
     private TipoConta tipo_conta;
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Usuario usuario; 
+    private Usuario usuario;
 }

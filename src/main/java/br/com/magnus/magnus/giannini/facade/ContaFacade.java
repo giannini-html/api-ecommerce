@@ -11,8 +11,6 @@ import java.util.*;
 
 @Service
 public class ContaFacade {
-    private static final Map<Long, Conta> contas = new HashMap<>();
-
     @Autowired
     private ContaRepository contaRepository;
 

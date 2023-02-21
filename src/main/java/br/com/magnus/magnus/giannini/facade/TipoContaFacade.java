@@ -13,8 +13,6 @@ import java.util.Optional;
 
 @Service
 public class TipoContaFacade {
-    private static final Map<Long, Conta> contas = new HashMap<>();
-
     @Autowired
     private TipoContaRepository tipoContaRepository;
 

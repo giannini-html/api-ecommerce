@@ -18,6 +18,6 @@ public class Carrinho {
     private Long cod_carrinho;
     private Long preco;
     @ManyToOne
-    private Usuario cli_cod;
+    private Usuario usuario;
 
 }

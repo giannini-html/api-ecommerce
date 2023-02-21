@@ -2,17 +2,14 @@ package br.com.magnus.magnus.giannini.facade;
 
 import br.com.magnus.magnus.giannini.dao.CarrinhoRepository;
 import br.com.magnus.magnus.giannini.entity.Carrinho;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class CarrinhoFacade {
-    private static final Map<Long, Carrinho> carrinho = new HashMap<>();
-
+    @Autowired
     private CarrinhoRepository carrinhoRepository;
 
     public Carrinho criar(Carrinho carrinho) {
@@ -23,8 +20,8 @@ public class CarrinhoFacade {
         return carrinhoRepository.save(carrinho);
     }
 
-    public Carrinho recuperarPorId(Long carrinhoId) {
-        return carrinhoRepository.getById(carrinhoId);
+    public Optional<Carrinho> recuperarPorId(Long carrinhoId) {
+        return carrinhoRepository.findById(carrinhoId);
     }
 
     public List<Carrinho> getAll() {
